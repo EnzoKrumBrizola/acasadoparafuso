@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0031)https://acasadoparafuso.com.br/ -->
-<html lang="pt-BR" class="has-offscreen"><<head>
+<html lang="pt-BR" class="has-offscreen">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Casa dos Parafusos | São José dos Pinhais</title>
@@ -46,6 +47,92 @@
 
     <!-- Scripts de Estrutura -->
     <script src="./assets/wpo-minify-header-7b760e42.min.js.download"></script>
+<style>
+/* Correção da seção de avaliações do Google */
+#avaliacoes {
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+    padding: 45px 0 35px;
+}
+
+#avaliacoes .ti-widget,
+#avaliacoes .ti-widget-container {
+    width: 100% !important;
+    max-width: 1170px !important;
+    margin: 0 auto !important;
+}
+
+/* Área que recebe os cards */
+#avaliacoes .ti-reviews-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    max-width: 1170px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+/* Esconde a barra de rolagem no Chrome, Edge e Safari */
+#avaliacoes .ti-reviews-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Cada avaliação ocupa toda a largura */
+#avaliacoes .ti-review-item,
+#avaliacoes .ti-reviews-container > div {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    margin: 0 !important;
+    scroll-snap-align: center;
+}
+
+/* Card da avaliação */
+#avaliacoes .ti-review-item-inner,
+#avaliacoes .ti-review-content {
+    min-height: 215px;
+    margin: 0 8px !important;
+    padding: 35px 25px !important;
+    border-radius: 12px !important;
+    background: #191919 !important;
+    color: #ffffff !important;
+    box-sizing: border-box;
+}
+
+/* Título da seção */
+#avaliacoes h2,
+#avaliacoes h3 {
+    text-align: center;
+    color: #526581;
+    margin-bottom: 35px;
+}
+
+/* Estrelas */
+#avaliacoes .ti-stars,
+#avaliacoes .ti-rating {
+    color: #ffbd00 !important;
+}
+
+/* Ajuste para celular */
+@media (max-width: 767px) {
+    #avaliacoes {
+        padding: 35px 12px 25px;
+    }
+
+    #avaliacoes .ti-review-item-inner,
+    #avaliacoes .ti-review-content {
+        min-height: 240px;
+        padding: 30px 18px !important;
+    }
+}
+</style>
 </head>
 <body class="home wp-singular page-template page-template-page-templates page-template-homepage page-template-page-templateshomepage-php page page-id-78 custom-background wp-custom-logo wp-theme-materialis overlap-first-section materialis-front-page materialis-content-no-padding materialis-maintainable-in-customizer">
 <!-- Google Tag Manager (noscript) -->
