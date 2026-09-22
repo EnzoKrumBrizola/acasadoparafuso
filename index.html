@@ -746,4 +746,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-146"><a href="https://acasadoparafuso.com.br/#lojas" aria-current="page">Lojas</a></li>
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-790"><a href="https://acasadoparafuso.com.br/#avaliacoes" aria-current="page">Avaliacoes</a></li>
 </ul></div>
-            </div></body></html>
+            </div>
+	<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector(
+        "#avaliacoes .ti-reviews-container"
+    );
+
+    if (!container) return;
+
+    container.style.display = "flex";
+    container.style.flexWrap = "nowrap";
+    container.style.overflowX = "auto";
+
+    const cards = container.children;
+
+    Array.from(cards).forEach(function (card) {
+        card.style.flex = "0 0 100%";
+        card.style.width = "100%";
+        card.style.maxWidth = "100%";
+    });
+});
+</script>
+</body></html>
