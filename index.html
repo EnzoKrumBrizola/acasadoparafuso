@@ -121,15 +121,40 @@ footer a{color:#fff;text-decoration:none;font-weight:600}
 
 /* REGRAS RESPONSIVAS PARA CELULAR */
 @media(max-width:900px){
-  .menu-btn{display:block}.bar{gap:12px}.bar .kit{margin-left:auto;padding:9px 14px;font-size:17px}.menu-btn{margin-left:0}
+  .menu-btn{display:block}
+  .bar{gap:10px}
+  
+  /* Ajusta o tamanho do botão no topo para caber junto com a logo e o menu */
+  .bar .kit{
+    margin-left:auto;
+    padding:6px 10px;
+    font-size:14px;
+    gap:5px;
+  }
+  .bar .kit small{
+    font-size:9px;
+    padding:1px 5px;
+    top:-8px;
+    right:-4px;
+  }
+  
+  .menu-btn{margin-left:0}
   nav{display:none;position:absolute;top:80px;left:0;right:0;background:#fff;flex-direction:column;align-items:flex-start;padding:20px;gap:16px;border-bottom:4px solid var(--laranja)}
-  nav.aberto{display:flex}nav .kit{display:none}
+  nav.aberto{display:flex}
   .info .wrap,.sos .wrap,.sobre .wrap{grid-template-columns:1fr}
   section{padding:52px 0}.hero{padding:64px 0 90px}
 }
 
 @media(max-width:600px){
-  .bar .kit{display:none}
+  /* MANTÉM O BOTÃO VISÍVEL NO CELULAR EM PÉ */
+  .bar .kit{
+    display:inline-flex; 
+    font-size:12px;
+    padding:5px 8px;
+  }
+  .bar .kit i{ font-size:13px; }
+  .bar .kit small{ display:none; } /* Oculta só a tagzinha 'MAIS VENDIDO' em telas pequenas pra não quebrar a barra */
+  
   .hero{padding:48px 0 72px}
   .hero p{font-size:16px;padding:10px 14px}
   .hero .cta{flex-direction:column}
