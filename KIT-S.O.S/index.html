@@ -36,8 +36,8 @@ h2{font-size:clamp(30px,4.6vw,44px);margin-bottom:12px}
 /* Cabeçalho */
 header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:4px solid var(--laranja);box-shadow:0 2px 14px rgba(8,34,79,.12)}
 .bar{display:flex;align-items:center;gap:20px;height:76px}
-.bar .logo{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;color:var(--azul);text-decoration:none;letter-spacing:.3px}
-.bar .logo span{color:var(--laranja)}
+.bar .logo{display:flex;align-items:center;text-decoration:none}
+.bar .logo img{height:50px;width:auto}
 nav{margin-left:auto;display:flex;gap:24px;align-items:center}
 nav a{text-decoration:none;font-weight:600;color:var(--azul);font-size:15px}nav a:hover{color:var(--laranja)}
 .menu-btn{display:none;background:none;border:0;font-size:26px;color:var(--azul);cursor:pointer;margin-left:auto}
@@ -129,12 +129,10 @@ nav a{text-decoration:none;font-weight:600;color:var(--azul);font-size:15px}nav 
 .cinfo p{margin:6px 0;font-size:15px}
 .cinfo i{color:var(--laranja);margin-right:8px;width:18px}
 .clogo{background:var(--azul);border-radius:var(--raio);display:grid;place-items:center;color:#fff;padding:28px;text-align:center}
-.clogo .lg{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;margin-bottom:8px}
-.clogo .lg span{color:var(--laranja)}
+.clogo img{height:78px;width:auto;margin:0 auto 14px;filter:brightness(0) invert(1)}
 /* Rodapé */
 footer{background:var(--azul-esc);color:#cfdcf5;padding:30px 0;font-size:15px;text-align:center}
-footer .lg{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#fff;margin-bottom:8px}
-footer .lg span{color:var(--laranja)}
+footer img{height:44px;width:auto;margin:0 auto 10px}
 .zap{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;font-size:32px;box-shadow:0 6px 18px rgba(0,0,0,.3);text-decoration:none}
 @media(max-width:900px){
  .menu-btn{display:block}
@@ -154,7 +152,7 @@ footer .lg span{color:var(--laranja)}
 
 <header>
  <div class="wrap bar">
-  <a class="logo" href="#topo">Casa do <span>Parafuso</span></a>
+  <a class="logo" href="#topo"><img src="CDP-LOGO2.png" alt="A Casa do Parafuso"></a>
   <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
   <nav id="menu">
    <a href="#inicio">Início</a><a href="#calculo">Prejuízo Zero</a><a href="#conteudo">O que vem no kit</a>
@@ -392,7 +390,7 @@ footer .lg span{color:var(--laranja)}
   <a class="btn btn-o" href="https://wa.me/5541988725687" target="_blank" rel="noopener" style="margin-top:16px"><i class="fa-brands fa-whatsapp"></i>Chamar no WhatsApp</a>
  </div>
  <div class="clogo">
-  <div class="lg">Casa do <span>Parafuso</span></div>
+  <img src="CDP-LOGO.png" alt="A Casa do Parafuso">
   <p>Parafusos e ferramentas de qualidade</p>
  </div>
 </div></section>
@@ -400,7 +398,7 @@ footer .lg span{color:var(--laranja)}
 
 <footer>
  <div class="wrap">
-  <div class="lg">Casa do <span>Parafuso</span></div>
+  <img src="CDP-LOGO-BRANCA.png" alt="A Casa do Parafuso">
   <p>© 2026 A Casa do Parafuso. Todos os direitos reservados.</p>
  </div>
 </footer>
