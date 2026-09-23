@@ -67,9 +67,21 @@ nav a{text-decoration:none;font-weight:600;color:var(--azul)}nav a:hover{color:v
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
 .card{background:#fff;border:1px solid #dbe3f1;border-radius:var(--raio);overflow:hidden;transition:.2s}
 .card:hover{border-color:var(--laranja);box-shadow:0 8px 22px rgba(8,34,79,.14)}
-.card img{width:100%;aspect-ratio:375/220;object-fit:cover;background:var(--gelo)}
+.card img{width:100%;aspect-ratio:375/220;object-fit:contain;padding:8px;background:#fff;border-bottom:1px solid #e6ecf6;cursor:zoom-in}
 .card div{padding:14px 16px 16px}.card small{color:var(--laranja-esc);font-weight:600}.card h4{font-size:21px;margin-top:2px}
 .vazio{display:none;padding:30px;color:#4a5875}
+.card.loja img{object-fit:cover;padding:0;cursor:default;border:0}
+/* Visualizador de imagem */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(8,34,79,.78);display:none;place-items:center;padding:20px}
+.lb.on{display:grid}
+.lb-box{background:#fff;border-radius:var(--raio);width:min(760px,100%);padding:16px;border-top:6px solid var(--laranja)}
+.lb-top{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.lb-top h3{flex:1;font-size:26px}
+.lb button{width:42px;height:42px;border:0;border-radius:10px;background:var(--azul);color:#fff;font-size:16px;cursor:pointer}
+.lb button:hover{background:var(--azul-esc)}.lb .fechar{background:var(--laranja)}.lb .fechar:hover{background:var(--laranja-esc)}
+.lb-view{height:min(60vh,480px);overflow:hidden;background:#fff;border:1px solid #dbe3f1;border-radius:10px;display:grid;place-items:center;touch-action:none}
+.lb-view img{max-width:100%;max-height:100%;object-fit:contain;transition:transform .15s;user-select:none;-webkit-user-drag:none}
+.lb-dica{font-size:13px;color:#4a5875;margin-top:10px;text-align:center}
 /* Sobre */
 .sobre{background:var(--gelo)}
 .sobre .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
@@ -159,7 +171,7 @@ footer a{color:#fff;text-decoration:none;font-weight:600}
 
 <section id="produtos"><div class="wrap">
  <h2>Nossos produtos</h2>
- <p class="sub">Parafusos, porcas, arruelas, buchas, rebites e ferramentas. Procure pelo nome e chame no WhatsApp para consultar medidas e preços.</p>
+ <p class="sub">Parafusos, porcas, arruelas, buchas, rebites e ferramentas. Clique na foto para ampliar. Para medidas e preços, chame no WhatsApp.</p>
  <label class="busca"><i class="fa-solid fa-magnifying-glass"></i><input id="q" type="search" placeholder="Buscar: porca, drywall, allen..." aria-label="Buscar produtos"></label>
  <div class="grid" id="lista"></div>
  <p class="vazio" id="vazio">Não achou? Chame no WhatsApp: temos mais de 5 mil itens.</p>
@@ -203,6 +215,18 @@ footer a{color:#fff;text-decoration:none;font-weight:600}
  <a href="https://www.facebook.com/CasadoparafusoSaoJoseDosPinhais" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i> Facebook A Casa do Parafuso</a>
  <span>© 2026 A Casa do Parafuso | São José (41) 99173-6039</span>
 </div></footer>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+ <div class="lb-box">
+  <div class="lb-top"><h3></h3>
+   <button id="zo" aria-label="Diminuir zoom"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+   <button id="zi" aria-label="Aumentar zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+   <button id="zr" aria-label="Tamanho original"><i class="fa-solid fa-rotate-left"></i></button>
+   <button class="fechar" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="lb-view"><img alt=""></div>
+  <p class="lb-dica">Use a roda do mouse ou os botões para dar zoom. Arraste a imagem para mover.</p>
+ </div>
+</div>
 <a class="zap" href="https://wa.me/5541988725687" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
 
 <script>
@@ -258,11 +282,30 @@ const P=`01_autobrocantesextavado.jpg|Parafuso Auto Brocante|Inox e Zincado
 10_arruelapressao_.jpg|Arruela Pressão|Inox e Zincada
 FERRAMENTA_BROCAESCAREADOR.jpg|Chaves, Brocas e Abrasivos|Ferramentas`.split("\n").map(l=>l.split("|"));
 const lista=document.getElementById("lista"),vazio=document.getElementById("vazio");
-lista.innerHTML=P.map(([f,n,m])=>`<article class="card"><img loading="lazy" src="./assets/${f.startsWith("FERR")?f:"PARAFUSO_"+f}" alt="${n}"><div><small>${m}</small><h4>${n}</h4></div></article>`).join("");
+lista.innerHTML=P.map(([f,n,m])=>`<article class="card"><img loading="lazy" tabindex="0" role="button" title="Clique para ampliar" src="./assets/${f.startsWith("FERR")?f:"PARAFUSO_"+f}" alt="${n}"><div><small>${m}</small><h4>${n}</h4></div></article>`).join("");
 document.getElementById("q").addEventListener("input",e=>{
  const t=e.target.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");let v=0;
  [...lista.children].forEach(c=>{const ok=c.textContent.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").includes(t);c.style.display=ok?"":"none";v+=ok});
  vazio.style.display=v?"none":"block"});
+const lb=document.getElementById("lb"),li=lb.querySelector("img"),lt=lb.querySelector("h3");
+let z=1,x=0,y=0,d=null;
+const ap=()=>{li.style.transform=`translate(${x}px,${y}px) scale(${z})`;li.style.cursor=z>1?"grab":"zoom-in"};
+const zoom=v=>{z=Math.min(5,Math.max(1,v));if(z==1)x=y=0;ap()};
+const fechar=()=>lb.classList.remove("on");
+function abrir(img){li.src=img.src;li.alt=img.alt;lt.textContent=img.alt;z=1;x=y=0;ap();lb.classList.add("on");lb.querySelector(".fechar").focus()}
+lista.addEventListener("click",e=>{const i=e.target.closest("img");if(i)abrir(i)});
+lista.addEventListener("keydown",e=>{if((e.key=="Enter"||e.key==" ")&&e.target.tagName=="IMG"){e.preventDefault();abrir(e.target)}});
+lb.addEventListener("click",e=>{if(e.target==lb)fechar()});
+lb.querySelector(".fechar").onclick=fechar;
+document.addEventListener("keydown",e=>{if(e.key=="Escape")fechar()});
+document.getElementById("zi").onclick=()=>zoom(z+.5);
+document.getElementById("zo").onclick=()=>zoom(z-.5);
+document.getElementById("zr").onclick=()=>zoom(1);
+li.addEventListener("wheel",e=>{e.preventDefault();zoom(z+(e.deltaY<0?.25:-.25))},{passive:false});
+li.addEventListener("dblclick",()=>zoom(z>1?1:2.5));
+li.addEventListener("pointerdown",e=>{if(z>1){d={x:e.clientX-x,y:e.clientY-y};li.style.transition="none";li.setPointerCapture(e.pointerId)}});
+li.addEventListener("pointermove",e=>{if(d){x=e.clientX-d.x;y=e.clientY-d.y;ap()}});
+li.addEventListener("pointerup",()=>{d=null;li.style.transition=""});
 const R=[["Marcelo","O lugar é sensacional! Ótimos preços e o atendimento é nota 10! Parabéns!",5],["Redave Peças e Serviços","Atendimento rápido e excelente!",5],["CLK Bzona","Ótimo atendimento.",5],["Julio Cesar","Bom atendimento. Preço regular. Possui algumas vagas de estacionamento para os clientes em frente a loja.",4],["Gabriel Fruehling","Recomendo, atendimento excelente do André, encontrei tudo que precisava!",5],["David De Castilho","Sempre tem tudo o que você precisa, recomendo muito, e atendimento excelente mesmo.",5]];
 document.getElementById("revs").innerHTML=R.map(([n,t,s])=>`<article class="rev"><header><span class="av">${n[0]}</span><b>${n}</b></header><div class="stars">${"★".repeat(s)}${"☆".repeat(5-s)}</div><p>${t}</p></article>`).join("");
 const mb=document.querySelector(".menu-btn"),mn=document.getElementById("menu");
