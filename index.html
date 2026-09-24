@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600;700;800&display=swap">
 <style>
 :root{--azul:#0E3A82;--azul-esc:#08224F;--laranja:#E8850C;--laranja-esc:#C96F00;--branco:#fff;--gelo:#F3F6FB;--texto:#1E2B45;--raio:14px}
 *{box-sizing:border-box;margin:0}
@@ -70,7 +70,7 @@ nav a{text-decoration:none;font-weight:600;color:var(--azul)}nav a:hover{color:v
 .info h3{font-size:22px}.info p{font-size:15px;color:#4a5875}
 
 /* ==========================================================
-   SECÇÃO DO KIT S.O.S (REFORMULADA PARA MÁXIMO DESTAQUE)
+   SECÇÃO DO KIT S.O.S (COM 'KITS A PARTIR DE' EM DESTAQUE)
    ========================================================== */
 .sos{
   background: radial-gradient(circle at 70% 50%, #0E3A82 0%, #051633 100%);
@@ -137,59 +137,51 @@ nav a{text-decoration:none;font-weight:600;color:var(--azul)}nav a:hover{color:v
   flex-shrink: 0;
 }
 
-/* Card de Preço Destacado */
+/* Card de Preço */
 .preco-card {
   background: #ffffff;
   color: var(--texto);
   border-radius: 20px;
-  padding: 36px 28px;
+  padding: 32px 24px;
   text-align: center;
   position: relative;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 0 2px var(--laranja);
 }
 
-.preco-tag {
-  position: absolute;
-  top: -16px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--laranja);
-  color: #fff;
+/* Rótulo "KITS A PARTIR DE" Super Explícito */
+.a-partir-de {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #FFF3E0;
+  border: 2px solid var(--laranja);
+  color: var(--laranja-esc);
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 1px;
-  padding: 4px 18px;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(232, 133, 12, 0.4);
-  white-space: nowrap;
-}
-
-.preco-card em {
-  display: block;
-  font-style: normal;
-  color: #556585;
-  font-weight: 700;
-  font-family: 'Barlow', sans-serif;
-  font-size: 14px;
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 8px;
+  padding: 8px 20px;
+  border-radius: 50px;
+  width: 100%;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 10px rgba(232, 133, 12, 0.15);
 }
 
 .preco-card b {
   display: block;
   font: 800 62px/1 'Barlow Condensed', sans-serif;
   color: var(--azul);
-  margin: 8px 0;
+  margin: 4px 0 10px;
 }
 
 .preco-card .pagamento-info {
   display: block;
-  font-size: 14px;
-  color: #64748b;
-  font-weight: 500;
-  margin-bottom: 20px;
+  font-size: 15px;
+  color: #4a5875;
+  font-weight: 600;
+  margin-bottom: 22px;
 }
 
 .btn-cta-kit {
@@ -328,6 +320,7 @@ footer a{color:#fff;text-decoration:none;font-weight:600}
   .lb-top h3{font-size:18px}
   .lb button{width:36px;height:36px;font-size:14px}
   .zap{width:52px;height:52px;font-size:28px;right:14px;bottom:14px}
+  .a-partir-de{font-size:20px;padding:6px 14px}
 }
 
 @media(prefers-reduced-motion:reduce){.kit{animation:none}html{scroll-behavior:auto}}
@@ -366,7 +359,7 @@ footer a{color:#fff;text-decoration:none;font-weight:600}
  <div><i class="fa-solid fa-user-check"></i><span><h3>Atendimento experiente</h3><p>Ajuda para acertar na compra.</p></span></div>
 </div></section>
 
-<!-- SECÇÃO DO KIT REFORMULADA -->
+<!-- SECÇÃO DO KIT COM 'KITS A PARTIR DE' EM DESTAQUE -->
 <section class="sos" id="kit"><div class="wrap">
  <div>
   <div class="sos-badge-top"><i class="fa-solid fa-fire"></i> Solução para Oficinas & Autônomos</div>
@@ -381,8 +374,9 @@ footer a{color:#fff;text-decoration:none;font-weight:600}
   <a class="btn btn-l" href="./KIT-S.O.S/"><i class="fa-solid fa-circle-info"></i> Ver detalhes completos do kit</a>
  </div>
  <div class="preco-card">
-  <span class="preco-tag">MELHOR CUSTO-BENEFÍCIO</span>
-  <em>Kits a partir de</em>
+  <div class="a-partir-de">
+   <i class="fa-solid fa-circle-exclamation"></i> KITS A PARTIR DE
+  </div>
   <b>R$ 257,30</b>
   <span class="pagamento-info">à vista no PIX ou até 6x no cartão</span>
   <a class="btn btn-o btn-cta-kit btn-shimmer" href="https://enzokrumbrizola.github.io/acasadoparafuso/KIT-S.O.S/#produto"><i class="fa-solid fa-cart-shopping"></i> Escolher meu kit</a>
